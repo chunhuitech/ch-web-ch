@@ -55,5 +55,17 @@ export const asyncRouterMap = [
     children: [{ path: 'index', name: 'Table', component: _import('table/index'), meta: { role: ['admin'] }}]
   },
 
+  {
+    path: '/sysset',
+    component: Layout,
+    redirect: 'noredirect',
+    name: '系统设置',
+    icon: 'zujian',
+    children: [
+      { path: 'UserManage', name: '用户管理', component: _import('user/user_manage') },
+      { path: 'RoleManage', name: '角色管理', component: _import('user/role_manage') }
+    ]
+  },
+
   { path: '*', redirect: '/404', hidden: true }
 ]
