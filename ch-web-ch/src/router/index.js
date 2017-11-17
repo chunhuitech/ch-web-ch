@@ -62,8 +62,14 @@ export const asyncRouterMap = [
     name: '系统设置',
     icon: 'zujian',
     children: [
-      { path: 'UserManage', name: '用户管理', component: _import('user/user_manage') },
-      { path: 'RoleManage', name: '角色管理', component: _import('user/role_manage') }
+      { path: 'UserManage', name: '用户管理',
+        component: resolve => require(['../views/user/user_manage.vue'], resolve)
+        // component: _import('user/user_manage')
+      },
+      { path: 'RoleManage', name: '角色管理',
+        component: resolve => require(['../views/user/role_manage'], resolve)
+        // component: _import('user/role_manage')
+      }
     ]
   },
 

@@ -71,6 +71,12 @@ export default {
   name: 'role_manage',
   data() {
     return {
+      temp: {
+        id: null,
+        systemId: 1,
+        name: '',
+        des: ''
+      },
       rules: {
         name: [
           { required: true, message: '请输入名称', trigger: 'blur' },
@@ -89,12 +95,7 @@ export default {
         limit: 20,
         name: null
       },
-      temp: {
-        id: null,
-        systemId: 1,
-        name: '',
-        des: ''
-      },
+      
       dialogFormVisible: false,
       dialogStatus: '',
       textMap: {

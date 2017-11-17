@@ -3,5 +3,5 @@ var prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  BASE_API: '"http://localhost:8880/api/admin/web"', // https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin
+  BASE_API: '"http://182.254.218.31:8880/api/admin/web"', // https://easy-mock.com/mock/5950a2419adc231f356a6636/vue-admin
 })
