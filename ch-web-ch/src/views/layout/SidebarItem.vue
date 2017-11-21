@@ -6,7 +6,7 @@
           <icon-svg v-if='item.icon' :icon-class="item.icon" /> {{item.children[0].name}}
         </el-menu-item>
       </router-link>
-      <el-submenu :index="item.name" v-if="!item.noDropdown&&!item.hidden">
+      <el-submenu :index="item.path" v-if="!item.noDropdown&&!item.hidden">
         <template slot="title">
           <icon-svg v-if='item.icon' :icon-class="item.icon" /> {{item.name}}
         </template>

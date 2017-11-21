@@ -18,13 +18,27 @@ Vue.use(Router)
 export const constantRouterMap = [
   { path: '/login', component: _import('login/index'), hidden: true },
   { path: '/404', component: _import('404'), hidden: true },
+  { path: '/portal', component: _import('portal/index'), hidden: true },
+  // { path: '/dashboard', component: _import('dashboard/index'), hidden: true },
   {
-    path: '/',
+    path: '/dashboard',
     component: Layout,
-    redirect: '/dashboard',
     name: 'Dashboard',
     hidden: true,
-    children: [{ path: 'dashboard', component: _import('dashboard/index') }]
+    children: [{ path: '/dashboard', component: _import('dashboard/index'), hidden: true }]
+  },
+  {
+    // path: '/',
+    // component: Layout,
+    // redirect: '/dashboard',
+    // name: 'Dashboard',
+    // hidden: true,
+    // children: [{ path: 'dashboard', component: _import('dashboard/index') }]
+    path: '/',
+    redirect: '/portal',
+    name: 'Portal',
+    hidden: true,
+    children: [{ path: 'portal', component: _import('portal/index') }]
   }
 ]
 
@@ -72,6 +86,6 @@ export const asyncRouterMap = [
       }
     ]
   },
-
+  { path: '/portal', component: _import('portal/index'), hidden: true },
   { path: '*', redirect: '/404', hidden: true }
 ]
