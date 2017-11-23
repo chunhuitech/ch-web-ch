@@ -6,6 +6,7 @@ var merge = require('webpack-merge')
 var baseWebpackConfig = require('./webpack.base.conf')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+var jquery = require('jquery')
 
 function resolveApp(relativePath) {
   return path.resolve(relativePath);
@@ -36,6 +37,11 @@ module.exports = merge(baseWebpackConfig, {
       favicon: resolveApp('favicon.ico'),
       inject: true
     }),
-    new FriendlyErrorsPlugin()
+    new FriendlyErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
+    })
   ]
 })
