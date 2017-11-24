@@ -2,7 +2,7 @@
 	<div class="top-header">
 		<div class="container">
 			<a href="#" class="icon-mi"></a>
-			<a href="#" class="pic-gif"></a>
+			<a href="http://www.firemail.wang:9728/#/" target="_blank" class="pic-gif"></a>
 			<div class="header-navs">
 				<ul class="navs">
 					<li v-for="item in navs" class="nav">
@@ -18,8 +18,14 @@
 					</li>
 				</ul>
 			</div>
-			<div class="header-search">
-				<ul class="hot-word"
+			<div class="header-search-temp">
+				<template >
+					<a target="_blank" title="3193183228" href="tencent://message/?uin=3193183228&Site=在线QQ&amp;Menu=yes;">在线交流</a>
+				</template>
+				</div>
+				
+			<!-- <div class="header-search">
+				 <ul class="hot-word"
 					transition="fadeOut"
 					v-show="hotStatus">
 					<li class="hot-item"
@@ -39,8 +45,8 @@
 						<span class="item-name">{{item.name}}</span>
 						<span class="item-num">约有{{item.number}}件</span>
 					</li>
-				</ul>
-			</div>
+				</ul> 
+			</div> -->
 		</div>
 		<div class="header-menu"
 			@mouseenter="evtHeaderEnter()"
@@ -122,15 +128,15 @@ export default {
 				{name: '智能摄像机', imgUrl: 'http://c1.mifile.cn/f/i/g/doodle/zhinengyingjian!160x110.jpg', sourcePath: 'http://list.mi.com/accessories/tag?id=shexiangji', price: '149元起'}
 			],
 			navs: [
-				{name: '小米手机', type: 'xiaomi'},
-				{name: '红米', type: 'red'},
-				{name: '平板 · 笔记本', type: 'flats'},
-				{name: '电视', type: 'tv'},
-				{name: '盒子 · 影音', type: 'box'},
-				{name: '路由器', type: 'router'},
-				{name: '智能硬件', type: 'hardware'},
-				{name: '服务', sourceUrl: '//www.mi.com/service/'},
-				{name: '社区', sourceUrl: 'http://www.xiaomi.cn'}
+				// {name: '小米手机', type: 'xiaomi'},
+				// {name: '红米', type: 'red'},
+				// {name: '平板 · 笔记本', type: 'flats'},
+				// {name: '电视', type: 'tv'},
+				// {name: '盒子 · 影音', type: 'box'},
+				// {name: '路由器', type: 'router'},
+				// {name: '智能硬件', type: 'hardware'},
+				// {name: '服务', sourceUrl: '//www.mi.com/service/'},
+				// {name: '社区', sourceUrl: 'http://www.firemail.wang'}
 			],
 			results: [
 				{name: '小米手机5', number: '11'},
@@ -199,7 +205,7 @@ export default {
 .icon-mi {
 	width: 55px;
 	height: 55px;
-	background: url('../../assets/portal_images/icon-mi.png') no-repeat;
+	background: url('../../assets/portal_images/icon-ch.png') no-repeat;
 	background-size: 100% 100%;
 }
 
@@ -239,6 +245,15 @@ export default {
 
 .navs .nav .nav-item :hover{
     color: #ff6700;
+}
+
+.header-search-temp {
+	position: absolute;
+	top: 50px;
+	right: 0;
+	width: 295px;
+	height: 50px;
+
 }
 
 .header-search {

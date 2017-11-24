@@ -12,7 +12,7 @@
 				</ul>
 			</div>
 			<div class="topbar-info">                
-                <a href="https://open.weixin.qq.com/">
+                <!-- <a href="https://open.weixin.qq.com/">
                      <img style="position: relative;top:8px;" :src="imgUrl_WeiXin" alt="weixin">
                  </a>
                 <span class="nav-separate" >|</span>
@@ -22,7 +22,8 @@
                 <span class="nav-separate" >|</span>
 				<a href="http://order.mi.com/site/login?redirectUrl=http://www.mi.com/index.html">登陆</a>
 				<span class="nav-separate" >|</span>
-				<a href="https://account.xiaomi.com/pass/register">注册</a>
+				<a href="https://account.xiaomi.com/pass/register">注册</a> -->
+                <span class="nav-separate" >欢迎光临！</span>
 			</div>
 
 		</div>
@@ -39,7 +40,7 @@ export default {
             imgUrl_QQ: img_qq,
             imgUrl_WeiXin: img_weixin,
             navs: [
-				{name: '论坛', sourceUrl: 'http://www.firemail.wang'}
+				{name: '论坛', sourceUrl: 'http://www.firemail.wang/forum.php'}
 			]
         }
     },

@@ -6,15 +6,21 @@
 
 <script>
 import slide from './common/Slide.vue'
+import img_firemail from '@/assets/portal_images/firemail.jpg'
+import img_chedu from '@/assets/portal_images/chedu.jpg'
+import img_fireshadow from '@/assets/portal_images/fireshadow.jpg'
+import img_RaspberryPi from '@/assets/portal_images/RaspberryPi.jpg'
+import img_website from '@/assets/portal_images/website.jpg'
+
 export default {
 	data () {
 		return {
 			banners: [
-				{sourceUrl: '//item.mi.com/buyphone/mi5', imgUrl: 'http://i3.mifile.cn/a4/bc62a28f-de64-4eee-853b-36772a97f67e'},
-				{sourceUrl: '//item.mi.com/buyphone/hongmi3s', imgUrl: 'http://i3.mifile.cn/a4/ba4939c9-fc0a-4916-bddc-726fa00f7e9b'},
-				{sourceUrl: '//item.mi.com/buyphone/mimax', imgUrl: 'http://i3.mifile.cn/a4/9ced2c9e-f685-4918-9b2a-402af2d2039f'},
-				{sourceUrl: '//item.mi.com/buyphone/note3', imgUrl: 'http://i3.mifile.cn/a4/f4bee59d-85a5-498f-ae57-a2cabe6aeb5b'},
-				{sourceUrl: '//item.mi.com/buymitv/48', imgUrl: 'http://i3.mifile.cn/a4/98fc8a58-c35c-475e-89cb-b8fe1659817f'}
+				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=1', imgUrl: img_firemail},
+				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=68', imgUrl: img_chedu},
+				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=194', imgUrl: img_fireshadow},
+				{sourceUrl: '//www.firemail.wang:8088/forum.php?mod=forumdisplay&fid=340', imgUrl: img_RaspberryPi},
+				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=105', imgUrl: img_website}
 			]
 		}
 	},

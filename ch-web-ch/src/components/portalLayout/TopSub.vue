@@ -1,5 +1,6 @@
 <template>
   <div class="top-sub">
+	  <!-- http://fontawesome.dashgame.com/ 查图标 -->
 		<div class="sub-1">
 			<ul class="channels">
 				<li class="channel">
@@ -66,18 +67,18 @@
 		</div>
 		<ul class="subs">
 			<li>
-				<a href="http://hd.mi.com/y/08191p/index.html" class="sub-item sub-2" target="_blank">
-					<img src="http://i3.mifile.cn/a4/1327d707-4f67-4c36-8ae5-3d7704c989eb" alt="" />
+				<a href="http://www.firemail.wang:8088/forum.php?gid=1" class="sub-item sub-2" target="_blank">
+					<img :src="imageUrlFiremailSmall" alt="" />
 				</a>
 			</li>
 			<li>
-				<a href="http://item.mi.com/buyphone/redmipro/" class="sub-item sub-3" target="_blank">
-					<img src="http://i3.mifile.cn/a4/c202123c-4197-4666-9793-2f1e156ab23a" alt="" />
+				<a href="http://www.firemail.wang:8088/forum.php?gid=68" class="sub-item sub-3" target="_blank">
+					<img :src="imageUrlCheduSmall" alt="" />
 				</a>
 			</li>
 			<li>
-				<a href="http://item.mi.com/static/buymipad" class="sub-item sub-4" target="_blank">
-					<img src="http://i3.mifile.cn/a4/216f7f38-66ee-4c1b-8409-8d77cb64d386" alt="" />
+				<a href="//www.firemail.wang:8088/forum.php?mod=forumdisplay&fid=340" class="sub-item sub-4" target="_blank">
+					<img :src="imageUrlRaspberryPiSmall" alt="" />
 				</a>
 			</li>
 		</ul>
@@ -85,9 +86,16 @@
 </template>
 
 <script>
+import img_firemail_small from '@/assets/portal_images/firemail_small.jpg'
+import img_chedu_small from '@/assets/portal_images/chedu_small.jpg'
+import img_RaspberryPi_small from '@/assets/portal_images/RaspberryPi_small.jpg'
+//  
 export default {
 	data () {
 		return {
+			 imageUrlFiremailSmall: img_firemail_small,
+			 imageUrlCheduSmall: img_chedu_small,
+			 imageUrlRaspberryPiSmall: img_RaspberryPi_small
 		}
 	},
 	methods: {
