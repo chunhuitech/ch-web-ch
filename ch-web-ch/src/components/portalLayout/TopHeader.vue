@@ -2,7 +2,6 @@
 	<div class="top-header">
 		<div class="container">
 			<a href="#" class="icon-mi"></a>
-			<a href="http://www.firemail.wang:9728/#/" target="_blank" class="pic-gif"></a>
 			<div class="header-navs">
 				<ul class="navs">
 					<li v-for="item in navs" class="nav">

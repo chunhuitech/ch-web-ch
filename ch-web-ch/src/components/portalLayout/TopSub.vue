@@ -4,30 +4,30 @@
 		<div class="sub-1">
 			<ul class="channels">
 				<li class="channel">
-          <a href="http://www.mi.com/compare/" target="_blank">
-  					<i class="fa fa-mobile fa-fw sub-icon"></i>
+          <a href="http://www.firemail.wang:8088/forum.php?gid=1" target="_blank">
+  					<i class="fa fa-envelope-o fa-fw sub-icon"></i>
             <p class="channel-txt">
-  					      选购手机
+  					      firemail
             </p>
           </a>
 				</li>
 				<div class="line-vertical">
 				</div>
 				<li class="channel">
-          <a href="http://qiye.mi.com/" target="_blank">
-  					<i class="fa fa-gift fa-fw sub-icon"></i>
+          <a href="http://www.firemail.wang:8088/forum.php?gid=68" target="_blank">
+  					<i class="fa fa-university fa-fw sub-icon"></i>
             <p class="channel-txt">
-  					       企业团购
+  					       春晖学府
             </p>
           </a>
 				</li>
 				<div class="line-vertical">
 				</div>
 				<li class="channel">
-          <a href="http://item.mi.com/re" target="_blank">
-  					<i class="fa fa-refresh fa-fw sub-icon"></i>
+          <a href="http://www.firemail.wang:8088/forum.php?mod=forumdisplay&fid=340" target="_blank">
+  					<i class="fa fa-television fa-fw sub-icon"></i>
             <p class="channel-txt">
-  					       官翻产品
+  					       树莓派
             </p>
           </a>
 				</li>
@@ -38,28 +38,28 @@
 				<div class="line-horizontal">
 				</div>
 				<li class="channel">
-          <a href="http://huanxin.mi.com/product/list" target="_blank">
-  					<i class="fa fa-credit-card fa-fw sub-icon"></i>
-            <p class="channel-txt">小米移动</p>
+          <a href="http://www.firemail.wang:8088/forum.php?gid=74" target="_blank">
+  					<i class="fa fa-weixin fa-fw sub-icon"></i>
+            <p class="channel-txt">微信服务</p>
           </a>
 				</li>
 				<div class="line-vertical">
 				</div>
 				<li class="channel">
-          <a href="http://huanxin.mi.com/product/list" target="_blank">
-  					<i class="fa fa-recycle fa-fw sub-icon"></i>
+          <a href="http://www.firemail.wang:8088/forum.php?gid=291" target="_blank">
+  					<i class="fa fa-male fa-fw sub-icon"></i>
   					<p class="channel-txt">
-  					  以旧换新
+  					  人工智能
   					</p>
           </a>
 				</li>
 				<div class="line-vertical">
 				</div>
 				<li class="channel">
-          <a href="http://recharge.10046.mi.com/" target="_blank">
-  					<i class="fa fa-credit-card-alt fa-fw sub-icon"></i>
+          <a href="http://www.firemail.wang:8088/forum.php?gid=98" target="_blank">
+  					<i class="fa fa-sitemap fa-fw sub-icon"></i>
             <p class="channel-txt">
-    					话费充值
+    					网站建设
             </p>
           </a>
 				</li>

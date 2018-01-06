@@ -20,7 +20,7 @@
 							<!-- <li class="link-item"><a href="javascript:void(0)">Select Region</a></li> -->
 						</ul>
 						<p class="explan-txt">
-							©<a href="//www.chunhuitech.cn">chunhuitech.cn</a> 粤ICP备15085507号-1 <br/>
+							©<a href="//www.chunhuitech.cn">chunhuitech.cn</a> _____ <br/>
                             <!-- http://www.miitbeian.gov.cn/publish/query/indexFirst.action -->
 							 Copyright © 2016 - 2017 chunhuitech. All Rights Reserved
 						</p>
