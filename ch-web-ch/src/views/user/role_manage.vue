@@ -53,6 +53,11 @@
           <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容" v-model="temp.des">
           </el-input>
         </el-form-item>
+        <el-form-item  label="菜单：" >
+            <div>
+              <el-tree :data="menuListData"  show-checkbox node-key="id" ref="tree_menus"  highlight-current :props="defaultProps"> </el-tree>
+            </div>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -65,7 +70,7 @@
 </template>
 
 <script>
-import { fetchList, add, del, mod } from '@/api/sys/role_manage';
+import { fetchList, add, del, mod, get } from '@/api/sys/role_manage';
 
 export default {
   name: 'role_manage',
@@ -75,7 +80,15 @@ export default {
         id: null,
         systemId: 1,
         name: '',
-        des: ''
+        des: '',
+        menus: []
+      },
+      menuListData:[],
+      defaultProps: {
+          children: 'children',
+          label: 'name'
+      },
+      firstMenusMap:{
       },
       rules: {
         name: [
@@ -105,9 +118,18 @@ export default {
     }
   },
   created() {
-    this.getList();
+    // this.getList();
   },
+  mounted: function() {
+        this.$nextTick(function() {
+            this.initData();
+            this.getList();
+        });
+    },
   methods: {
+    initData() {
+      this.menuListData = this.$store.getters.menu_list;
+    },
     getList() {
       this.listLoading = true;
       fetchList(this.listQuery).then(response => {
@@ -157,14 +179,47 @@ export default {
       this.dialogFormVisible = true;
     },
     handleUpdate(row) {
-      this.temp = Object.assign({}, row);
+      let self = this;
+      // this.temp = Object.assign({}, row);
+      for(let item in row){
+        self.temp[item]=row[item]+"";
+      }
+      get(self.temp).then(response => {
+        if(response.code == 0){
+          let data=response.data;
+          self.temp={
+               id: data.id,
+                systemId: data.systemId,
+                name: data.name,
+                des: data.des,
+              menus:[]
+          }
+          data.menus.map(function(val){
+            if(val.children.length>0){
+              val.children.map(function(val_C){
+                self.temp.menus.push(val_C.id);
+              })
+            }
+          })
+          self.setCheckedKeys("menus", self.temp.menus)
+        }
+      })
       this.temp.systemId = 1;
       this.dialogStatus = 'update';
       this.dialogFormVisible = true;
     },
+    setCheckedKeys(str, objArr) {
+        this.$refs["tree_" + str].setCheckedKeys(objArr);
+    },
     create() {
       this.$refs['temp'].validate((valid) => {
         if (valid) {
+          let self=this;
+          let menusArr=[];
+          this.$refs.tree_menus.getCheckedKeys().map(function(val){
+            menusArr.push(val);
+          })
+          self.temp.menus = menusArr;
             add(this.temp).then(response => {
             if(response.code == 0){
               this.dialogFormVisible = false;
@@ -186,6 +241,13 @@ export default {
     update() {
       this.$refs['temp'].validate((valid) => {
         if (valid) {
+          let self=this;
+          let menusArr=[];
+          // console.log(this.$refs.tree_menus.getCheckedKeys())
+          this.$refs.tree_menus.getCheckedKeys().map(function(val){
+            menusArr.push(val);
+          })
+          self.temp.menus = menusArr; 
             mod(this.temp).then(response => {
               if(response.code == 0){
                 this.dialogFormVisible = false;
@@ -208,8 +270,10 @@ export default {
         id: null,
         systemId: 1,
         des: '',
-        name: ''
+        name: '',
+        menus: []
       };
+      this.setCheckedKeys("menus", [])
     }
   }
 }

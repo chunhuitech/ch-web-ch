@@ -35,3 +35,12 @@ export function mod(params) {
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
+
+export function get(params) {
+  return fetch({
+    url: '/role/get',
+    method: 'post',
+    data: JSON.stringify(params),
+    headers: { 'Content-Type': 'application/json;charset=UTF-8' }
+  })
+}

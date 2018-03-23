@@ -12,7 +12,8 @@
 
 
 <script>
-import { Navbar, Sidebar, AppMain } from '@/views/layout'
+import { Navbar, AppMain } from '@/views/layout'
+import Sidebar from '@/views/layout/SidebarCus.vue'
 
 export default {
   name: 'layout',

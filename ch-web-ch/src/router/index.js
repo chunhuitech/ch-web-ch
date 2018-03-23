@@ -50,13 +50,26 @@ export default new Router({
 
 export const asyncRouterMap = [
   {
-    path: '/example',
+    path: '/example/',
     component: Layout,
     redirect: 'noredirect',
     name: 'Example',
     icon: 'zujian',
     children: [
       { path: 'index', name: 'Form', icon: 'zonghe', component: _import('page/form') }
+    ]
+  },
+
+  {
+    path: '/example2/',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'Example2',
+    icon: 'zujian',
+    children: [
+      { path: 'index2', component: Layout, redirect: 'noredirect', name: 'Form2', icon: 'zonghe',
+        children: [{ path: 'index3', name: 'Table', component: _import('table/index') }]
+      }
     ]
   },
 
@@ -70,17 +83,35 @@ export const asyncRouterMap = [
   },
 
   {
-    path: '/sysset',
+    path: '/101',
+    component: Layout,
+    redirect: 'noredirect',
+    name: '账号设置',
+    icon: 'zujian',
+    children: [
+      { path: '/102', name: '个人资料',
+        component: resolve => require(['../views/user/user_base'], resolve)
+        // component: _import('user/user_manage')
+      },
+      { path: '/103', name: '安全设置',
+        component: resolve => require(['../views/user/user_security'], resolve)
+        // component: _import('user/role_manage')
+      }
+    ]
+  },
+
+  {
+    path: '/1',
     component: Layout,
     redirect: 'noredirect',
     name: '系统设置',
     icon: 'zujian',
     children: [
-      { path: 'UserManage', name: '用户管理',
+      { path: '/2', name: '用户管理',
         component: resolve => require(['../views/user/user_manage.vue'], resolve)
         // component: _import('user/user_manage')
       },
-      { path: 'RoleManage', name: '角色管理',
+      { path: '/3', name: '角色管理',
         component: resolve => require(['../views/user/role_manage'], resolve)
         // component: _import('user/role_manage')
       }
@@ -89,3 +120,14 @@ export const asyncRouterMap = [
   { path: '/portal', component: _import('portal/index'), hidden: true },
   { path: '*', redirect: '/404', hidden: true }
 ]
+/*
+对path的处理两种方案
+１.有层级关系　访问时要组合
+一级父类route以 / 开头和结束  子类不需要/ 开头,但要连接上其父类对应的字段
+如：一级 /systemSet  二级为 userManage  组合后为 /systemSet/userManage
+http://localhost:9528/#/systemSet/userManage
+2.对path直接使用一个不重复的任意数据，也可以用id 存放时以 /　开头
+访问时无论是哪一层　直接　/后加id值就可以了。
+这个值生成后，要在两个地方配置，一个是本文件中的path字段，一个是数据库表 admin_menu 中的path字段
+关键在于只要构造好对应的父子关系就行了　children　字段
+*/

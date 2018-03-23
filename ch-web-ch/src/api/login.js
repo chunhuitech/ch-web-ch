@@ -19,9 +19,25 @@ export function getInfo(token) {
   })
 }
 
+export function getBaseInfo(token) {
+  return fetch({
+    url: '/user/baseInfo',
+    method: 'get',
+    params: { token }
+  })
+}
+
 export function logout() {
   return fetch({
     url: '/user/loginout',
     method: 'post'
+  })
+}
+
+export function getRight(token) {
+  return fetch({
+    url: '/user/rightInfo',
+    method: 'get',
+    params: { token }
   })
 }
