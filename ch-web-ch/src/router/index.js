@@ -101,6 +101,19 @@ export const asyncRouterMap = [
   },
 
   {
+    path: '/90',
+    component: Layout,
+    redirect: 'noredirect',
+    name: '产品管理',
+    icon: 'wujiaoxing',
+    children: [
+      { path: '/91', name: '产品活跃度',
+        component: resolve => require(['../views/product/product_activity'], resolve)
+      }
+    ]
+  },
+
+  {
     path: '/1',
     component: Layout,
     redirect: 'noredirect',

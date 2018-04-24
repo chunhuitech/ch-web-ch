@@ -17,7 +17,7 @@ export default {
 		return {
 			banners: [
 				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=1', imgUrl: img_firemail},
-				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=68', imgUrl: img_chedu},
+				{sourceUrl: 'http://www.firemail.wang:8088/doraemon/', imgUrl: img_chedu},
 				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=194', imgUrl: img_fireshadow},
 				{sourceUrl: '//www.firemail.wang:8088/forum.php?mod=forumdisplay&fid=340', imgUrl: img_RaspberryPi},
 				{sourceUrl: 'http://www.firemail.wang:8088/forum.php?gid=105', imgUrl: img_website}
