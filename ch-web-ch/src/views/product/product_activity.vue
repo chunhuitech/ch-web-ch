@@ -122,7 +122,8 @@ export default {
       productInfos: [
           { key: 0, display_name: '全部' },
           { key: 1, display_name: 'Doraemon 32位' },
-          { key: 2, display_name: 'Doraemon 64位' }
+          { key: 2, display_name: 'Doraemon 64位' },
+          { key: 3, display_name: '微信小程序' }
       ],
       dialogFormVisible: false,
       timeRange:[],
