@@ -64,12 +64,17 @@
       <el-table-column prop="createTime" label="创建时间" :formatter="formatters">
       </el-table-column>
 
-      <el-table-column align="center" label="操作" width="100">
+      <el-table-column align="center" label="备注">
+        <template scope="scope">
+          <span>{{scope.row.remarks}}</span>
+        </template>
+      </el-table-column>
+      <!-- <el-table-column align="center" label="操作" width="100">
         <template scope="scope">
           <el-button size="small" type="danger" @click="handleDelete(scope.row)">删除
           </el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
     </el-table>
 
