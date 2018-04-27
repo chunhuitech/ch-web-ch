@@ -5,6 +5,9 @@
 # Clone project
 git clone https://github.com/chunhuitech/ch-web-ch.git
 
+# windows下 下载nodejs 如 node-v8.11.1-x64.msi(内含node npm) 安装
+# 安装python，如：python-2.7.14.amd64.msi
+
 # Install dependencies
 npm install
 
