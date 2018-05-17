@@ -114,6 +114,19 @@ export const asyncRouterMap = [
   },
 
   {
+    path: '/80',
+    component: Layout,
+    redirect: 'noredirect',
+    name: '资源管理',
+    icon: 'shouce',
+    children: [
+      { path: '/81', name: '点读资源',
+        component: resolve => require(['../views/resource/page_manage'], resolve)
+      }
+    ]
+  },
+
+  {
     path: '/1',
     component: Layout,
     redirect: 'noredirect',

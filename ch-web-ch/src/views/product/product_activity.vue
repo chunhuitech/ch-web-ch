@@ -58,6 +58,13 @@
         </template>
       </el-table-column>
 
+      <el-table-column align="center" label="次数">
+        <template scope="scope">
+          <span>{{scope.row.eventCount}}</span>
+        </template>
+      </el-table-column>
+      
+
       <el-table-column prop="modifyTime" label="修改时间" :formatter="formatters">
       </el-table-column>
 
