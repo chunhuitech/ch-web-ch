@@ -36,7 +36,7 @@
 
        <el-table-column align="center" label="操作系统">
         <template scope="scope">
-          <span>{{scope.row.os.substring(0,10)}}</span>
+          <span>{{scope.row.os && scope.row.os.substring(0,10)}}</span>
         </template>
       </el-table-column>
 
