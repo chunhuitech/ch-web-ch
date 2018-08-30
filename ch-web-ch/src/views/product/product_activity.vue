@@ -36,7 +36,7 @@
 
        <el-table-column align="center" label="操作系统">
         <template scope="scope">
-          <span>{{scope.row.os.substring(0,10)}}</span>
+          <span>{{scope.row.os && scope.row.os.substring(0,10)}}</span>
         </template>
       </el-table-column>
 
@@ -58,18 +58,30 @@
         </template>
       </el-table-column>
 
+      <el-table-column align="center" label="次数">
+        <template scope="scope">
+          <span>{{scope.row.eventCount}}</span>
+        </template>
+      </el-table-column>
+      
+
       <el-table-column prop="modifyTime" label="修改时间" :formatter="formatters">
       </el-table-column>
 
       <el-table-column prop="createTime" label="创建时间" :formatter="formatters">
       </el-table-column>
 
-      <el-table-column align="center" label="操作" width="100">
+      <el-table-column align="center" label="备注">
+        <template scope="scope">
+          <span>{{scope.row.remarks}}</span>
+        </template>
+      </el-table-column>
+      <!-- <el-table-column align="center" label="操作" width="100">
         <template scope="scope">
           <el-button size="small" type="danger" @click="handleDelete(scope.row)">删除
           </el-button>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
     </el-table>
 
