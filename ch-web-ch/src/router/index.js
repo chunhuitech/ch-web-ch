@@ -120,6 +120,9 @@ export const asyncRouterMap = [
     name: '资源管理',
     icon: 'shouce',
     children: [
+      { path: '/82', name: '分类管理',
+        component: resolve => require(['../views/resource/class_manage'], resolve)
+      },
       { path: '/81', name: '点读资源',
         component: resolve => require(['../views/resource/page_manage'], resolve)
       }
@@ -156,4 +159,7 @@ http://localhost:9528/#/systemSet/userManage
 访问时无论是哪一层　直接　/后加id值就可以了。
 这个值生成后，要在两个地方配置，一个是本文件中的path字段，一个是数据库表 admin_menu 中的path字段
 关键在于只要构造好对应的父子关系就行了　children　字段
+
+*****
+采用第2种方案后，同时要在 admin_role_menu 表中添加对应权限记录
 */

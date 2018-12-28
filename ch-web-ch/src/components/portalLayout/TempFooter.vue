@@ -22,7 +22,7 @@
 						<p class="explan-txt">
 							©<a href="//www.chunhuitech.cn">chunhuitech.cn</a> _____ <br/>
                             <!-- http://www.miitbeian.gov.cn/publish/query/indexFirst.action -->
-							 Copyright © 2016 - 2017 chunhuitech. All Rights Reserved
+							 Copyright © 2016 - 2019 chunhuitech. All Rights Reserved
 						</p>
 					</div>
 					<!-- <img class="logo-explan logo-explan-first" src="http://privacy-policy.truste.com/privacy-seal/seal?rid=4fc28a8c-6822-4980-9c4b-9fdc69b94eb8" alt="" />

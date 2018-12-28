@@ -19,8 +19,8 @@ export default {
   components: {
     'top-bar': TopBar,
     'top-header': TopHeader,
-    'top-banner': TopBanner,
-    'top-sub': TopSub,
+    // 'top-banner': TopBanner,
+    // 'top-sub': TopSub,
     'temp-footer': TempFooter
   }
 }

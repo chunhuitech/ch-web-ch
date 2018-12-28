@@ -1,8 +1,5 @@
-.DS_Store
-node_modules/
-dist/
-.idea/
+dist_back/
 dist.zip
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+dist/
+dist_back.zip
+node_modules/
