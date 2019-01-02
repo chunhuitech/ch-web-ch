@@ -123,6 +123,12 @@ export const asyncRouterMap = [
       { path: '/82', name: '分类管理',
         component: resolve => require(['../views/resource/class_manage'], resolve)
       },
+      { path: '/83', name: '记录管理',
+        component: resolve => require(['../views/resource/record_manage'], resolve)
+      },
+      { path: '/84', name: '资源管理',
+        component: resolve => require(['../views/resource/resource_manage'], resolve)
+      },
       { path: '/81', name: '点读资源',
         component: resolve => require(['../views/resource/page_manage'], resolve)
       }

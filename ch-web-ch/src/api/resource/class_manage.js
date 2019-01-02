@@ -7,3 +7,12 @@ export function fetchList(params) {
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
+
+export function fetchAll(params) {
+  return fetch({
+    url: '/class/all',
+    method: 'post',
+    data: JSON.stringify(params),
+    headers: { 'Content-Type': 'application/json;charset=UTF-8' }
+  })
+}

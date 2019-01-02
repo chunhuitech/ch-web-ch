@@ -1,16 +1,14 @@
 <template>
   <div class="app-container calendar-list-container">
         <div class="filter-container">
-      <!-- <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="父类id" v-model="listQuery.parentId">
+      <!-- <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="所属分类id" v-model="listQuery.classId">
       </el-input> -->
-
-      <el-select v-model="listQuery.parentId" @change="handleFilter" placeholder="请选择">
+    <el-select v-model="listQuery.classId" @change="handleFilter" placeholder="请选择">
           <!-- <el-option key="0" label="全部" value="0"> -->
           </el-option>
           <el-option v-for="item in calssIds" :key="item.id" :label="item.cnName" :value="item.id">
           </el-option>
       </el-select>
-   
       <el-button class="filter-item" type="primary" icon="search" @click="handleFilter">搜索</el-button>
     </div>
     
@@ -24,25 +22,19 @@
 
       <el-table-column label="名称">
         <template scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.cnName}}</span>
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.title}}</span>
         </template>
       </el-table-column>
 
-       <el-table-column label="英文名">
+       <el-table-column label="所属分类">
         <template scope="scope">
-          <span class="link-type" >{{scope.row.enName}}</span>
-        </template>
-      </el-table-column>
-
-       <el-table-column align="center" label="叶子">
-        <template scope="scope">
-          <span>{{scope.row.leaf}}</span>
+          <span class="link-type" >{{scope.row.book}}</span>
         </template>
       </el-table-column>
 
       <el-table-column label="排序号">
         <template scope="scope">
-          <span class="link-type" >{{scope.row.sortNum}}</span>
+          <span class="link-type" >{{scope.row.page}}</span>
         </template>
       </el-table-column>
 
@@ -52,9 +44,9 @@
       <el-table-column prop="createTime" label="创建时间" :formatter="formatters">
       </el-table-column>
 
-      <el-table-column align="center" label="备注">
+      <el-table-column align="center" label="url">
         <template scope="scope">
-          <span>{{scope.row.des}}</span>
+          <span>{{scope.row.imageUrl}}</span>
         </template>
       </el-table-column>
 
@@ -92,10 +84,11 @@
 </template>
 
 <script>
-import { fetchList, fetchAll } from '@/api/resource/class_manage';
+import { fetchAll } from '@/api/resource/class_manage';
+import { fetchList } from '@/api/resource/record_manage';
 
 export default {
-  name: 'class_manage',
+  name: 'record_manage',
   data() {
     return {
       selectFormLabelWidth: "100px",
@@ -120,7 +113,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        parentId: 0
+        classId: 0
       }
     }
   },
@@ -136,7 +129,7 @@ export default {
       this.listLoading = true;
       fetchList(this.listQuery).then(response => {
         this.list = response.data.dataList;
-        this.total = response.data.dataList.length;
+        this.total = response.data.total;
         this.listLoading = false;
         // console.log(this.temp)
       })

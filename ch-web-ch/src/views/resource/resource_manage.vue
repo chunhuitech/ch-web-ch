@@ -1,16 +1,11 @@
 <template>
   <div class="app-container calendar-list-container">
         <div class="filter-container">
-      <!-- <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="父类id" v-model="listQuery.parentId">
-      </el-input> -->
-
-      <el-select v-model="listQuery.parentId" @change="handleFilter" placeholder="请选择">
-          <!-- <el-option key="0" label="全部" value="0"> -->
+    <el-select v-model="listQuery.id" @change="handleFilter" placeholder="请选择">
           </el-option>
           <el-option v-for="item in calssIds" :key="item.id" :label="item.cnName" :value="item.id">
           </el-option>
       </el-select>
-   
       <el-button class="filter-item" type="primary" icon="search" @click="handleFilter">搜索</el-button>
     </div>
     
@@ -24,19 +19,7 @@
 
       <el-table-column label="名称">
         <template scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.cnName}}</span>
-        </template>
-      </el-table-column>
-
-       <el-table-column label="英文名">
-        <template scope="scope">
-          <span class="link-type" >{{scope.row.enName}}</span>
-        </template>
-      </el-table-column>
-
-       <el-table-column align="center" label="叶子">
-        <template scope="scope">
-          <span>{{scope.row.leaf}}</span>
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.title}}</span>
         </template>
       </el-table-column>
 
@@ -46,15 +29,24 @@
         </template>
       </el-table-column>
 
+       <el-table-column prop="fileSize" label="文件大小" :formatter="formatters">
+      </el-table-column>
+
+       <el-table-column label="文件类型">
+        <template scope="scope">
+          <span >{{scope.row.fileType}}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column prop="modifyTime" label="修改时间" :formatter="formatters">
       </el-table-column>
 
       <el-table-column prop="createTime" label="创建时间" :formatter="formatters">
       </el-table-column>
 
-      <el-table-column align="center" label="备注">
+      <el-table-column align="center" label="url">
         <template scope="scope">
-          <span>{{scope.row.des}}</span>
+          <span>{{scope.row.relativePath}}</span>
         </template>
       </el-table-column>
 
@@ -92,10 +84,11 @@
 </template>
 
 <script>
-import { fetchList, fetchAll } from '@/api/resource/class_manage';
+import { fetchAll } from '@/api/resource/class_manage';
+import { fetchList } from '@/api/resource/resource_manage';
 
 export default {
-  name: 'class_manage',
+  name: 'record_manage',
   data() {
     return {
       selectFormLabelWidth: "100px",
@@ -120,7 +113,7 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        parentId: 0
+        id: 0
       }
     }
   },
@@ -136,7 +129,7 @@ export default {
       this.listLoading = true;
       fetchList(this.listQuery).then(response => {
         this.list = response.data.dataList;
-        this.total = response.data.dataList.length;
+        this.total = response.data.total;
         this.listLoading = false;
         // console.log(this.temp)
       })
@@ -201,6 +194,8 @@ export default {
             case "createTime":
                 return this.formatterDate(row, column);
                 break;
+            case "fileSize":
+                return this.formatterSize(row, column);
             default:
                 str = row[column.property];
                 break;
@@ -215,6 +210,23 @@ export default {
             +(date.getHours() > 9 ? date.getHours(): "0" + date.getHours())+":"
             +(date.getMinutes() > 9 ? date.getMinutes(): "0" + date.getMinutes()) +":"
             +(date.getSeconds() > 9 ? date.getSeconds(): "0" + date.getSeconds());
+    },
+    formatterSize(row, column) {
+        let size = row[column.property];
+        if (!size)
+          return "";
+
+        var num = 1024.00; //byte
+
+        if (size < num)
+          return size + "B";
+        if (size < Math.pow(num, 2))
+          return (size / num).toFixed(2) + "K"; //kb
+        if (size < Math.pow(num, 3))
+          return (size / Math.pow(num, 2)).toFixed(2) + "M"; //M
+        if (size < Math.pow(num, 4))
+          return (size / Math.pow(num, 3)).toFixed(2) + "G"; //G
+        return (size / Math.pow(num, 4)).toFixed(2) + "T"; //T
     }
   }
 }
