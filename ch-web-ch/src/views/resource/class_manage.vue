@@ -6,12 +6,13 @@
 
       <el-select v-model="listQuery.parentId" @change="handleFilter" placeholder="请选择">
           <!-- <el-option key="0" label="全部" value="0"> -->
-          </el-option>
+          <!-- </el-option> -->
           <el-option v-for="item in calssIds" :key="item.id" :label="item.cnName" :value="item.id">
           </el-option>
       </el-select>
    
       <el-button class="filter-item" type="primary" icon="search" @click="handleFilter">搜索</el-button>
+      <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
     </div>
     
     <el-table :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
@@ -58,6 +59,13 @@
         </template>
       </el-table-column>
 
+      <el-table-column align="center" label="操作" width="100">
+        <template scope="scope">
+          <el-button size="small" type="danger" @click="handleDelete(scope.row)">删除
+          </el-button>
+        </template>
+      </el-table-column>
+
     </el-table>
 
     <div v-show="!listLoading" class="pagination-container">
@@ -68,31 +76,42 @@
 
     <el-dialog :title="detailTitle" :visible.sync="dialogFormVisible">
       <el-form class="small-space" :model="temp"  ref="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-        <el-form-item label="操作系统" prop="os">
-          <el-input v-model="temp.os" ></el-input>
+        <el-form-item label="中文名" prop="cnName">
+          <el-input v-model="temp.cnName" ></el-input>
         </el-form-item>
 
-        <el-form-item label="区域" prop="area">
-          <el-input v-model="temp.area" ></el-input>
+        <el-form-item label="英文名" prop="enName">
+          <el-input v-model="temp.enName" ></el-input>
         </el-form-item>
 
-        <el-form-item label="内网ip" prop="ip">
-          <el-input v-model="temp.ip" ></el-input>
+        <el-form-item label="父类" prop="parentId">
+          <el-input v-model="temp.parentId" ></el-input>
         </el-form-item>
 
-        <el-form-item label="remarks备注" prop="remarks">
-          <el-input v-model="temp.remarks" ></el-input>
+        <el-form-item label="叶节点" prop="leaf">
+          <el-input v-model="temp.leaf" ></el-input>
         </el-form-item>
+
+        <el-form-item label="排序号" prop="sortNum">
+          <el-input v-model="temp.sortNum" ></el-input>
+        </el-form-item>
+
+        <el-form-item label="备注" prop="des">
+          <el-input v-model="temp.des" ></el-input>
+        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">确 定</el-button>
+        <el-button @click="dialogFormVisible = false">取 消</el-button>
+        <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
+        <el-button v-else type="primary" @click="update">确 定</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { fetchList, fetchAll } from '@/api/resource/class_manage';
+import { fetchList, fetchAll, add, del, mod, get } from '@/api/resource/class_manage';
 
 export default {
   name: 'class_manage',
@@ -101,12 +120,15 @@ export default {
       selectFormLabelWidth: "100px",
       temp: {
         id: null,
-        os: '',
-        area: '',
-        ip: '',
-        remarks: ''
+        parentId: 0,
+        sortNum: 0,
+        enName: '',
+        cnName: '',
+        leaf: 0,
+        des: ''
       },
       dialogFormVisible: false,
+      dialogStatus: '',
       timeRange:[],
       labelWidth: '20%',
       list: null,
@@ -146,6 +168,64 @@ export default {
         this.calssIds = response.data.dataList;
       })
     },
+    handleCreate() {
+      this.resetTemp();
+      this.dialogStatus = 'create';
+      this.dialogFormVisible = true;
+    },
+    resetTemp() {
+      this.temp = {
+        id: null,
+        parentId: 0,
+        sortNum: 0,
+        enName: '',
+        cnName: '',
+        leaf: 0,
+        des: ''
+      };
+    },
+    create() {
+      this.$refs['temp'].validate((valid) => {
+        if (valid) {
+            add(this.temp).then(response => {
+            if(response.code == 0){
+              this.dialogFormVisible = false;
+              this.$notify({
+                title: '成功',
+                message: '创建成功',
+                type: 'success',
+                duration: 2000
+              });
+              this.getAllClass();
+              this.getList();
+            }
+          })
+        } else {
+          return false;
+        }
+      });
+    },
+    update() {
+      this.$refs['temp'].validate((valid) => {
+        if (valid) {
+            mod(this.temp).then(response => {
+              if(response.code == 0){
+                this.dialogFormVisible = false;
+                this.$notify({
+                  title: '成功',
+                  message: '更新成功',
+                  type: 'success',
+                  duration: 2000
+                });
+                this.getAllClass();
+                this.getList();
+              }
+            })
+        } else {
+          return false;
+        }
+      });
+    },
     handleFilter() {
       this.getList();
     },
@@ -158,11 +238,11 @@ export default {
       this.getList();
     },
     handleDelete(row) {
-      this.$message({
-          type: 'info',
-          message: '不支持'
-        }); 
-      return;
+      // this.$message({
+      //     type: 'info',
+      //     message: '不支持'
+      //   }); 
+      // return;
       this.$confirm('确定要删除吗?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -189,7 +269,7 @@ export default {
       for(let item in row){
         this.temp[item]=row[item];
       }
-     
+      this.dialogStatus = 'update';
       this.dialogFormVisible = true;
     },
     //格式化函数分流
