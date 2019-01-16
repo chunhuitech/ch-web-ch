@@ -78,7 +78,7 @@ export default {
       return this.canvasH ? this.baseData[1]/this.canvasH : 1
     },
     scaleW(){
-      return this.canvasW ? (this.baseData[0]/this.baseData[2])/this.canvasW : 1
+      return this.canvasW ? this.baseData[0]/this.canvasW : 1
     }
 
   },

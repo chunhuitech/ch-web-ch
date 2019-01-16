@@ -1,52 +1,43 @@
 import fetch from '@/utils/fetch'
-export function fetchList(params) {
+export function fetchListDianDu(params) {
   return fetch({
-    url: '/resource/fetch',
+    url: '/readpoint/fetch',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
 
-export function fetchListResource(params) {
+export function addDianDu(params) {
   return fetch({
-    url: '/resource/fetch',
+    url: '/readpoint/add',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
 
-export function add(params) {
+export function delDianDu(params) {
   return fetch({
-    url: '/resource/add',
+    url: '/readpoint/del',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
 
-export function del(params) {
+export function modDianDu(params) {
   return fetch({
-    url: '/resource/del',
+    url: '/readpoint/mod',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
 
-export function mod(params) {
+export function getDianDu(params) {
   return fetch({
-    url: '/resource/mod',
-    method: 'post',
-    data: JSON.stringify(params),
-    headers: { 'Content-Type': 'application/json;charset=UTF-8' }
-  })
-}
-
-export function get(params) {
-  return fetch({
-    url: '/resource/get',
+    url: '/readpoint/getModel',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }

@@ -31,7 +31,7 @@
 
        <el-table-column label="英文名">
         <template scope="scope">
-          <span class="link-type" >{{scope.row.enName}}</span>
+          <span  >{{scope.row.enName}}</span>
         </template>
       </el-table-column>
 
@@ -43,7 +43,7 @@
 
       <el-table-column label="排序号">
         <template scope="scope">
-          <span class="link-type" >{{scope.row.sortNum}}</span>
+          <span >{{scope.row.sortNum}}</span>
         </template>
       </el-table-column>
 
@@ -85,8 +85,11 @@
         </el-form-item>
 
         <el-form-item label="父类" prop="parentId">
-          <el-input v-model="temp.parentId" ></el-input>
-        </el-form-item>
+          <el-select v-model="temp.parentId" placeholder="请选择">
+            <el-option v-for="item in calssIds" :key="item.id" :label="item.cnName" :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>  
 
         <el-form-item label="叶节点" prop="leaf">
           <el-input v-model="temp.leaf" ></el-input>
@@ -141,7 +144,7 @@ export default {
             }],
       listQuery: {
         page: 1,
-        limit: 20,
+        limit: 200,
         parentId: 0
       }
     }
@@ -255,6 +258,11 @@ export default {
               type: 'success'
             });
             this.getList();
+          } else if(response.code == 900018){
+            this.$message({
+              message: '其下有数据，不能删除',
+              type: 'info'
+            });
           }
         })
       }).catch(() => {

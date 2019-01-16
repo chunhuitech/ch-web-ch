@@ -67,9 +67,12 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form class="small-space" :model="temp"  ref="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-        <el-form-item label="classId" prop="classId">
-          <el-input v-model="temp.classId" ></el-input>
-        </el-form-item>
+        <el-form-item label="分类" prop="classId">
+          <el-select v-model="temp.classId" placeholder="请选择">
+            <el-option v-for="item in calssIds" :key="item.id" :label="item.cnName" :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>  
 
         <el-form-item label="排序号" prop="sortNum">
           <el-input v-model="temp.sortNum" ></el-input>
@@ -142,7 +145,7 @@ export default {
       },
       listQuery: {
         page: 1,
-        limit: 20,
+        limit: 200,
         id: 0
       }
     }
@@ -255,6 +258,11 @@ export default {
               type: 'success'
             });
             this.getList();
+          } else if(response.code == 900018){
+            this.$message({
+              message: '资源被占用，不能删除',
+              type: 'info'
+            });
           }
         })
       }).catch(() => {
