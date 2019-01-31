@@ -219,6 +219,22 @@
           <el-input v-model="temp.label" ></el-input>
         </el-form-item>
 
+        <el-form-item label="上传图片">
+           <el-upload 
+            class="avatar-uploader"
+            action="ads"
+            :http-request="uploadImage"
+            :show-file-list="false"
+            name="img"
+            :data="temp"
+            :on-change="handleChange"
+            :on-success="handleAvatarSuccess"
+            :before-upload="beforeAvatarUpload">
+            <img v-show="temp.status" :src="temp.relativePath" class="avatar">
+            <i v-show="!temp.status" class="el-icon-plus avatar-uploader-icon"></i>
+          </el-upload>
+        </el-form-item>
+
         <el-form-item label="路径" prop="relativePath">
           <el-input v-model="temp.relativePath" ></el-input>
         </el-form-item>
@@ -254,6 +270,7 @@ import { fetchAll } from '@/api/resource/class_manage';
 import { fetchList, add, del, mod } from '@/api/resource/record_manage';
 import { fetchListDianDu, addDianDu, delDianDu, modDianDu } from '@/api/resource/pointread_manage';
 import { fetchListResource } from '@/api/resource/resource_manage';
+import { upImage } from '@/api/sendServerFile';
 export default {
   name: 'record_manage',
   data() {
@@ -357,6 +374,22 @@ export default {
               this.resourceIds = response.data.dataList;
             })
     },
+    uploadImage(file) {
+            let seft = this;
+            let data = new FormData();
+            data.append('imageFile', file.file);
+            let obj = {
+                data: data,
+                suc: data => {
+                  this.temp.relativePath = data.data.data.path;
+                  this.temp.fileSize = data.data.data.size;
+                  this.temp.contentPlain = data.data.data.fileSize;
+                  this.temp.fileType = data.data.data.type;
+                }
+            }
+
+          upImage(obj);
+        },
     handleFilter() {
       this.getList();
     },
@@ -600,3 +633,28 @@ export default {
   }
 }
 </script>
+<style>
+
+.avatar-uploader .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 178px;
+    height: 178px;
+}
+
+.avatar-uploader .el-upload:hover {
+    border-color: #20a0ff;
+}
+
+.avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+}
+</style>
