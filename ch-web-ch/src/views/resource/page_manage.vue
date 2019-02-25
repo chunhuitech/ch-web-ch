@@ -7,6 +7,7 @@
         图片基准宽度：<el-input v-model="baseData[0]" placeholder="图片基准宽度"></el-input>
         图片基准高度: <el-input v-model="baseData[1]" placeholder="图片基准高度"></el-input>
         图片页数: <el-input v-model="baseData[2]" placeholder="图片页数"></el-input>
+        图片地址: <el-input v-model="imgSrc" placeholder="图片地址"></el-input>
       </div>
       
     </div>
@@ -84,6 +85,12 @@ export default {
   },
   mounted: function() {
 
+  },
+  watch:{
+    imgSrc(n,o) {
+      console.log(n,o)
+      this.getImgInfo();
+    }
   },
   methods: {
     handleRemove(file, fileList) {

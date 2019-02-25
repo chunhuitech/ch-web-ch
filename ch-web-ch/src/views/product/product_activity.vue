@@ -28,6 +28,12 @@
         </template>
       </el-table-column>
 
+      <el-table-column align="center" label="产品名称">
+        <template scope="scope">
+          <span>{{scope.row.procName}}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="标志">
         <template scope="scope">
           <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.clientFlag}}</span>
@@ -135,7 +141,8 @@ export default {
           { key: 0, display_name: '全部' },
           { key: 1, display_name: 'Doraemon 32位' },
           { key: 2, display_name: 'Doraemon 64位' },
-          { key: 3, display_name: '微信小程序' }
+          { key: 3, display_name: '微信小程序' },
+          { key: 4, display_name: 'wyyt' }
       ],
       dialogFormVisible: false,
       timeRange:[],
