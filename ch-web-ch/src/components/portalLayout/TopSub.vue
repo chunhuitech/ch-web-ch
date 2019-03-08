@@ -1,10 +1,10 @@
 <template>
   <div class="top-sub">
 	  <!-- http://fontawesome.dashgame.com/ 查图标 -->
-		<div class="sub-1">
+	<!--	<div class="sub-1">
 			<ul class="channels">
 				<li class="channel">
-          <a href="http://www.firemail.wang:8088/forum.php?gid=1" target="_blank">
+          <a href="http://www.firemail.wang:8088/face/" target="_blank">
   					<i class="fa fa-envelope-o fa-fw sub-icon"></i>
             <p class="channel-txt">
   					      firemail
@@ -64,21 +64,26 @@
           </a>
 				</li>
 			</ul>
-		</div>
+		</div> -->
 		<ul class="subs">
 			<li>
-				<a href="http://www.firemail.wang:8088/forum.php?gid=1" class="sub-item sub-2" target="_blank">
+				<a href="http://www.firemail.wang:8088/face/" class="sub-item sub-2" target="_blank">
 					<img :src="imageUrlFiremailSmall" alt="" />
 				</a>
 			</li>
 			<li>
-				<a href="http://www.firemail.wang:8088/forum.php?gid=68" class="sub-item sub-3" target="_blank">
+				<a href="http://www.chunhuitech.cn/wyyt/" class="sub-item sub-3" target="_blank">
 					<img :src="imageUrlCheduSmall" alt="" />
 				</a>
 			</li>
 			<li>
-				<a href="//www.firemail.wang:8088/forum.php?mod=forumdisplay&fid=340" class="sub-item sub-4" target="_blank">
+				<a href="http://www.chunhuitech.cn/doraemon/" class="sub-item sub-4" target="_blank">
 					<img :src="imageUrlRaspberryPiSmall" alt="" />
+				</a>
+			</li>
+			<li>
+				<a href="http://www.chunhuitech.cn/diandu/" class="sub-item sub-2" target="_blank">
+					<img :src="imageUrlDianduSmall" alt="" />
 				</a>
 			</li>
 		</ul>
@@ -89,13 +94,15 @@
 import img_firemail_small from '@/assets/portal_images/firemail_small.jpg'
 import img_chedu_small from '@/assets/portal_images/chedu_small.jpg'
 import img_RaspberryPi_small from '@/assets/portal_images/RaspberryPi_small.jpg'
+import img_diandu_small from '@/assets/portal_images/diandu_small.jpg'
 //  
 export default {
 	data () {
 		return {
 			 imageUrlFiremailSmall: img_firemail_small,
 			 imageUrlCheduSmall: img_chedu_small,
-			 imageUrlRaspberryPiSmall: img_RaspberryPi_small
+			 imageUrlRaspberryPiSmall: img_RaspberryPi_small,
+			 imageUrlDianduSmall: img_diandu_small
 		}
 	},
 	methods: {

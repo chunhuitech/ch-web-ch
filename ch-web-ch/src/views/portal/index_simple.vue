@@ -20,7 +20,7 @@ export default {
     'top-bar': TopBar,
     'top-header': TopHeader,
     // 'top-banner': TopBanner,
-     'top-sub': TopSub,
+    // 'top-sub': TopSub,
     'temp-footer': TempFooter
   }
 }

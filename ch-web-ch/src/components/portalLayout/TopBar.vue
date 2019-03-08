@@ -40,7 +40,7 @@ export default {
             imgUrl_QQ: img_qq,
             imgUrl_WeiXin: img_weixin,
             navs: [
-				{name: '论坛', sourceUrl: 'http://www.firemail.wang/forum.php'}
+				{name: '论坛', sourceUrl: 'http://www.firemail.wang:8088/forum.php'}
 			]
         }
     },
