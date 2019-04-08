@@ -8,7 +8,7 @@
 						<ul class="links clearfix">
 							<li class="link-item"><a href="http://www.google.cn/">Google</a></li>
                             <li class="link-item"><a href="https://www.baidu.com/" target="_blank">百度</a></li>
-							<li class="link-item"><a href="https://github.com/" target="_blank">GitHub</a></li>
+							<li class="link-item"><a href="https://github.com/hechengjin" target="_blank"><font color="#FF0000">GitHub源码地址</font></a></li>
 							<li class="link-item"><a href="https://developer.mozilla.org/" target="_blank">MDN</a></li>
 							<li class="link-item"><a href="https://cloud.tencent.com/" target="_blank">腾讯云</a></li>
 							<li class="link-item"><a href="https://www.aliyun.com/" target="_blank">阿里云</a></li>
