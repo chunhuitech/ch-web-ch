@@ -99,6 +99,14 @@
           <el-input v-model="temp.sortNum" ></el-input>
         </el-form-item>
 
+        <el-form-item label="是否显示" prop="sortNum">
+          <el-input v-model="temp.showFlag" ></el-input>
+        </el-form-item>
+
+        <el-form-item label="分类数据类型(1pc 2点读)" prop="sortNum">
+          <el-input v-model="temp.classDataType" ></el-input>
+        </el-form-item>
+
         <el-form-item label="备注" prop="des">
           <el-input v-model="temp.des" ></el-input>
         </el-form-item>
@@ -128,6 +136,8 @@ export default {
         enName: '',
         cnName: '',
         leaf: 0,
+        showFlag: 1,
+        classDataType: 1,
         des: ''
       },
       dialogFormVisible: false,
