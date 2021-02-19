@@ -67,22 +67,22 @@
 		</div> -->
 		<ul class="subs">
 			<li>
-				<a href="http://www.firemail.wang:8088/face/" class="sub-item sub-2" target="_blank">
+				<a href="http://www.chunhuitech.cn/firemail/" class="sub-item sub-2" target="_blank">
 					<img :src="imageUrlFiremailSmall" alt="" />
 				</a>
 			</li>
 			<li>
-				<a href="http://firemail.wang/single_wyyt.html" class="sub-item sub-3" target="_blank">
+				<a href="http://www.chunhuitech.cn/wyyt/" class="sub-item sub-3" target="_blank">
 					<img :src="imageUrlCheduSmall" alt="" />
 				</a>
 			</li>
 			<li>
-				<a href="http://firemail.wang/single_doraemon.html" class="sub-item sub-4" target="_blank">
+				<a href="http://www.chunhuitech.cn/doraemon/" class="sub-item sub-4" target="_blank">
 					<img :src="imageUrlRaspberryPiSmall" alt="" />
 				</a>
 			</li>
 			<li>
-				<a href="http://firemail.wang/single_chxf.html" class="sub-item sub-2" target="_blank">
+				<a href="http://www.chunhuitech.cn/diandu/" class="sub-item sub-2" target="_blank">
 					<img :src="imageUrlDianduSmall" alt="" />
 				</a>
 			</li>
