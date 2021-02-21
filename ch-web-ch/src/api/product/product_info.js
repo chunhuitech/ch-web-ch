@@ -1,7 +1,7 @@
 import fetch from '@/utils/fetch'
 export function fetchList(params) {
   return fetch({
-    url: '/activity/search',
+    url: '/productinfo/search',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
@@ -10,7 +10,7 @@ export function fetchList(params) {
 
 export function del(params) {
   return fetch({
-    url: '/activity/del',
+    url: '/productinfo/del',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
@@ -19,7 +19,7 @@ export function del(params) {
 
 export function get(params) {
   return fetch({
-    url: '/activity/get',
+    url: '/productinfo/get',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
@@ -28,18 +28,19 @@ export function get(params) {
 
 export function mod(params) {
   return fetch({
-    url: '/activity/mod',
+    url: '/productinfo/mod',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
 
-export function fetchProduct(params) {
+export function add(params) {
   return fetch({
-    url: '/activity/searchProductInfo',
+    url: '/productinfo/add',
     method: 'post',
     data: JSON.stringify(params),
     headers: { 'Content-Type': 'application/json;charset=UTF-8' }
   })
 }
+

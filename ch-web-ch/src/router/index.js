@@ -107,6 +107,9 @@ export const asyncRouterMap = [
     name: '产品管理',
     icon: 'wujiaoxing',
     children: [
+      { path: '/92', name: '产品信息',
+        component: resolve => require(['../views/product/product_info'], resolve)
+      },
       { path: '/91', name: '产品活跃度',
         component: resolve => require(['../views/product/product_activity'], resolve)
       }

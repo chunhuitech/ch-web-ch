@@ -1,25 +1,11 @@
 <template>
   <div class="app-container calendar-list-container">
         <div class="filter-container">
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="操作系统" v-model="listQuery.os">
+      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="名称" v-model="listQuery.name">
       </el-input>
 
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="区域" v-model="listQuery.area">
-      </el-input>
-
-      <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="事件" v-model="listQuery.eventName">
-      </el-input>
-
-      <el-select clearable class="filter-item" style="width: 130px" v-model="listQuery.procId" placeholder="产品">
-        <!-- <el-option v-for="item in productInfos" :key="item.key" :label="item.display_name" :value="item.key">
-        </el-option> -->
-        <el-option v-for="item in productInfos" :key="item.id" :label="item.name" :value="item.id">
-          </el-option>
-      </el-select>
-    
-      <el-date-picker  style="width: 200px;" v-model="timeRange" type="daterange" placeholder="选择时间范围" @change="selectChange"></el-date-picker>
-   
       <el-button class="filter-item" type="primary" icon="search" @click="handleFilter">搜索</el-button>
+       <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加</el-button>
     </div>
     
     <el-table :data="list" v-loading.body="listLoading" border fit highlight-current-row style="width: 100%">
@@ -30,47 +16,32 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="产品名称">
+
+      <el-table-column label="产品名称">
         <template scope="scope">
-          <span>{{scope.row.procName}}</span>
+          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.name}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="标志">
+       <el-table-column align="center" label="开发平台">
         <template scope="scope">
-          <span class="link-type" @click="handleUpdate(scope.row)">{{scope.row.clientFlag}}</span>
+          <span>{{scope.row.technologyPlatform && scope.row.technologyPlatform.substring(0,20)}}</span>
         </template>
       </el-table-column>
 
-       <el-table-column align="center" label="操作系统">
+      <el-table-column align="center" label="版本">
         <template scope="scope">
-          <span>{{scope.row.os && scope.row.os.substring(0,10)}}</span>
+          <span>{{scope.row.version}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="IP">
+      <el-table-column align="center" label="版本号">
         <template scope="scope">
-          <span>{{scope.row.netIp}}</span>
+          <span>{{scope.row.versionNum}}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="地区">
-        <template scope="scope">
-          <span>{{scope.row.area}}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="事件">
-        <template scope="scope">
-          <span>{{scope.row.eventName}}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column align="center" label="次数">
-        <template scope="scope">
-          <span>{{scope.row.eventCount}}</span>
-        </template>
-      </el-table-column>
+      
       
 
       <el-table-column prop="modifyTime" label="修改时间" :formatter="formatters">
@@ -101,58 +72,55 @@
 
     <el-dialog :title="detailTitle" :visible.sync="dialogFormVisible">
       <el-form class="small-space" :model="temp"  ref="temp" label-position="left" label-width="70px" style='width: 400px; margin-left:50px;'>
-        <el-form-item label="操作系统" prop="os">
-          <el-input v-model="temp.os" ></el-input>
+        <el-form-item label="产品名称" prop="name">
+          <el-input v-model="temp.name" ></el-input>
         </el-form-item>
 
-        <el-form-item label="区域" prop="area">
-          <el-input v-model="temp.area" ></el-input>
+        <el-form-item label="开发平台" prop="technologyPlatform">
+          <el-input v-model="temp.technologyPlatform" ></el-input>
         </el-form-item>
 
-        <el-form-item label="内网ip" prop="ip">
-          <el-input v-model="temp.ip" ></el-input>
+        <el-form-item label="版本" prop="version">
+          <el-input v-model="temp.version" ></el-input>
         </el-form-item>
-
+        <el-form-item label="版本号" prop="versionNum">
+          <el-input v-model="temp.versionNum" ></el-input>
+        </el-form-item>
+         <el-form-item label="下载地址" prop="downAddress">
+          <el-input v-model="temp.downAddress" ></el-input>
+        </el-form-item>
         <el-form-item label="remarks备注" prop="remarks">
           <el-input v-model="temp.remarks" ></el-input>
         </el-form-item>
       </el-form>
        <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="update">确 定</el-button>
+        <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
+        <el-button v-else type="primary" @click="update">确 定</el-button>        
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { fetchList, del, get, mod, fetchProduct } from '@/api/product/product_activity';
+import { fetchList, del, get, mod, add } from '@/api/product/product_info';
 
 export default {
-  name: 'product_activity',
+  name: 'product_info',
   data() {
     return {
       selectFormLabelWidth: "100px",
       temp: {
         id: null,
-        os: '',
-        area: '',
-        ip: '',
-        remarks: ''
+        name: '',
+        technologyPlatform: '',
+        version: '',
+        versionNum: '',
+        downAddress:'',
+        remarks:''
       },
-      // productInfos: [
-      //     { key: 0, display_name: '全部' },
-      //     { key: 1, display_name: 'Doraemon 32位' },
-      //     { key: 2, display_name: 'Doraemon 64位' },
-      //     { key: 3, display_name: '微信小程序' },
-      //     { key: 4, display_name: 'wyyt' }
-      // ],
-         productInfos: [{
-                id: 0,
-                name: "--全部--"
-            }],
       dialogFormVisible: false,
-      timeRange:[],
+       dialogStatus: '',
       labelWidth: '20%',
       list: null,
       total: null,
@@ -161,21 +129,13 @@ export default {
       listQuery: {
         page: 1,
         limit: 20,
-        procId: 0,
-        os: null,
-        area: null,
-        eventName: null,
-        startTime: 0,
-        endTime: 0
+        name: null
       }
     }
   },
   mounted: function() {
         var self = this;
-        self.timeRange[0] = this.listQuery.startTime;
-        self.timeRange[1] = this.listQuery.endTime;
         self.$nextTick(function() {
-            self.getAllProduct();
             self.getList();
         });
     },
@@ -188,15 +148,6 @@ export default {
         this.listLoading = false;
         // console.log(this.temp)
       })
-    },
-    getAllProduct() {
-      fetchProduct().then(response => {
-        this.productInfos = response.data.dataList;
-      })
-    },
-    selectChange() {
-        this.listQuery.startTime=new Date(this.timeRange[0]).getTime();
-        this.listQuery.endTime=new Date(this.timeRange[1]).getTime() + 1000 * 60 * 60 * 24 - 1;
     },
     handleFilter() {
       this.getList();
@@ -236,13 +187,49 @@ export default {
         });          
       });
     },
+    handleCreate() {
+      this.resetTemp();
+      this.dialogStatus = 'create';
+      this.dialogFormVisible = true;
+    },
+    resetTemp() {
+      this.temp = {
+         id: null,
+        name: '',
+        technologyPlatform: '',
+        version: '',
+        versionNum: '',
+        downAddress:'',
+        remarks:''
+      };
+    },
     handleUpdate(row) {
       let self = this;
       for(let item in row){
         this.temp[item]=row[item];
       }
-     
+      this.dialogStatus = 'update';
       this.dialogFormVisible = true;
+    },
+    create() {
+      this.$refs['temp'].validate((valid) => {
+        if (valid) {
+            add(this.temp).then(response => {
+            if(response.code == 0){
+              this.dialogFormVisible = false;
+              this.$notify({
+                title: '成功',
+                message: '创建成功',
+                type: 'success',
+                duration: 2000
+              });
+              this.getList();
+            }
+          })
+        } else {
+          return false;
+        }
+      });
     },
      update() {
       this.$refs['temp'].validate((valid) => {
